@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Amar Vishal – Vertriebsaußendienst | Vorwerk Kobold</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e1116;
+    --card:#121622;
+    --ink:#e9eefc;
+    --muted:#9fb0d1;
+    --brand:#3fd0c9;
+    --brand-2:#7aa2ff;
+    --accent:#1ee29a;
+    --ring: 0 0 0 2px rgba(63,208,201,.25), 0 10px 25px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.03);
+  }
+  * { box-sizing: border-box }
+  html,body { margin:0; background: radial-gradient(1100px 700px at 80% -10%, rgba(122,162,255,.18), transparent 60%), var(--bg); color:var(--ink); font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; }
+  a { color: var(--brand); text-decoration: none }
+  a:hover { text-decoration: underline }
+  .wrap { max-width: 1100px; margin: 40px auto; padding: 24px; }
+  header.hero{
+    position: relative; border-radius: 20px; padding: 28px; background:
+      linear-gradient(135deg, rgba(63,208,201,.07), rgba(122,162,255,.05));
+    box-shadow: var(--ring);
+    overflow: hidden;
+    display: grid; grid-template-columns: 1.2fr .8fr; gap: 18px;
+  }
+  .sparkle{
+    position:absolute; inset:-40px -40px auto auto; width:260px; height:260px; 
+    background: radial-gradient(circle at 30% 30%, rgba(63,208,201,.25), transparent 55%),
+                radial-gradient(circle at 70% 70%, rgba(122,162,255,.25), transparent 60%);
+    filter: blur(30px); opacity:.65; animation: float 8s ease-in-out infinite;
+  }
+  @keyframes float { 0%,100%{ transform: translateY(0) } 50%{ transform: translateY(14px) } }
+  .title h1{ margin:0; font-size: clamp(28px, 4.6vw, 46px); letter-spacing:.2px }
+  .title p{ margin:10px 0 0; color:var(--muted); max-width: 70ch; line-height:1.5 }
+  .tag{ display:inline-block; margin-top:12px; padding:6px 10px; border-radius:999px; background: rgba(63,208,201,.12); color:#d7fffc; font-weight:600; border:1px solid rgba(63,208,201,.25); }
+
+  .contact{
+    display:grid; gap:8px; align-content:start; justify-items:end; text-align:right;
+  }
+  .contact a, .contact div{ color:var(--ink); opacity:.95 }
+  .chip{ font-size:14px; color:#d9e5ff; opacity:.9 }
+  .badge{ display:inline-block; margin-top:8px; padding:6px 10px; border-radius:10px; background:#0f1423; border:1px solid rgba(255,255,255,.06) }
+
+  .grid{ display:grid; grid-template-columns: 1fr 1fr; gap:22px; margin-top:24px }
+  .card{ background: var(--card); border:1px solid rgba(255,255,255,.06); border-radius:16px; padding:18px; box-shadow: var(--ring); overflow:hidden }
+  .card h3{ margin:0 0 10px; font-size:18px; letter-spacing:.2px }
+  .card p{ color:#cdd7f0; margin:6px 0 0; line-height:1.55 }
+  .list{ margin:8px 0 0; padding:0 0 0 18px; color:#cfd7ef }
+  .list li{ margin:8px 0 }
+
+  /* Animated skill bars */
+  .skill{ margin:10px 0 12px }
+  .skill .label{ display:flex; justify-content:space-between; font-size:13px; color:#cfe0ff; }
+  .bar{ height:8px; border-radius:999px; background:#0b0f19; border:1px solid rgba(255,255,255,.06); overflow:hidden }
+  .bar > i{ display:block; height:100%; width:0; background: linear-gradient(90deg, var(--brand), var(--brand-2)); animation: grow 1.6s ease forwards; }
+  @keyframes grow { to { width: var(--w) } }
+
+  /* Timeline */
+  .timeline{ position:relative; margin:6px 0 0; padding-left:22px }
+  .timeline:before{ content:""; position:absolute; left:8px; top:6px; bottom:6px; width:2px; background: linear-gradient(var(--brand), transparent); border-radius:2px }
+  .tl{ position:relative; padding:10px 0 12px; transform: translateX(-8px); opacity:0; animation: slideIn .7s ease forwards; }
+  .tl:nth-child(1){ animation-delay:.1s } .tl:nth-child(2){ animation-delay:.25s } .tl:nth-child(3){ animation-delay:.4s } .tl:nth-child(4){ animation-delay:.55s }
+  .tl:before{ content:""; position:absolute; left:-16px; top:14px; width:10px; height:10px; border-radius:50%; background: var(--brand); box-shadow: 0 0 0 3px rgba(63,208,201,.2) }
+  .tl .role{ font-weight:700 }
+  .tl .meta{ color:var(--muted); font-size:13px; margin-top:4px }
+  @keyframes slideIn{ to{ transform:none; opacity:1 } }
+
+  /* Footer strip */
+  .strip{ margin:22px 0 0; padding:10px 14px; border-radius:12px; border:1px dashed rgba(255,255,255,.12); color:#cfe0ff; display:flex; gap:10px; align-items:center; }
+  .dot{ width:9px; height:9px; border-radius:50%; background: var(--accent); box-shadow: 0 0 10px var(--accent) }
+
+  /* Print */
+  @media print {
+    header.hero { box-shadow:none; background:#fff; color:#000; }
+    body { background:#fff; color:#000 }
+    .card { box-shadow:none; border-color:#ddd; }
+    .sparkle, .btns { display:none !important }
+    a { color:#000; text-decoration: underline }
+  }
+
+  /* Buttons */
+  .btns{ display:flex; gap:10px; margin:18px 0 0; flex-wrap:wrap }
+  .btn{
+    cursor:pointer; border:1px solid rgba(255,255,255,.12); background:linear-gradient(135deg, rgba(63,208,201,.18), rgba(122,162,255,.12));
+    padding:10px 14px; border-radius:12px; color:#e9eefc; font-weight:600; box-shadow: var(--ring); transition: transform .15s ease;
+  }
+  .btn:hover{ transform: translateY(-2px) }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <div class="sparkle" aria-hidden="true"></div>
+      <div class="title">
+        <span class="tag">Vertriebsaußendienst · Direktvertrieb · Home-Demos</span>
+        <h1>Amar Vishal</h1>
+        <p>
+          Kundenorientierter Technical Seller mit Erfahrung im Aufbau und der Führung von B2B-Pipelines in Deutschland
+          (Discovery → Demo → Angebot). Starke Gesprächsführung, klare Nutzenargumentation und strukturierte Nachverfolgung
+          – übertragbar auf B2C-Home-Demos im Direktvertrieb. EN/DE verhandlungssicher, geübt in cross-kultureller Kommunikation. 
+          Reisebereitschaft vorhanden.
+        </p>
+        <div class="btns">
+          <button class="btn" onclick="window.print()">Drucken / PDF</button>
+          <a class="btn" href="mailto:amarvishal01@gmail.com">E-Mail senden</a>
+          <a class="btn" href="tel:+4915255825941">Anrufen</a>
+          <a class="btn" href="https://amarvishal01.github.io/vertrieb/" target="_blank" rel="noreferrer">Profil/Portfolio</a>
+        </div>
+      </div>
+      <div class="contact">
+        <div class="badge"><strong>Standort:</strong> Düsseldorf, Deutschland</div>
+        <a class="chip" href="tel:+4915255825941">+49 152 55825941</a>
+        <a class="chip" href="mailto:amarvishal01@gmail.com">amarvishal01@gmail.com</a>
+        <a class="chip" href="https://amarvishal01.github.io/vertrieb/" target="_blank" rel="noreferrer">Website</a>
+        <div class="badge">Führerschein B: <strong>in Bearbeitung</strong></div>
+      </div>
+    </header>
+
+    <div class="grid">
+      <section class="card">
+        <h3>Warum ich zu Vorwerk Kobold passe</h3>
+        <ul class="list">
+          <li><strong>Vertriebs-Mindset:</strong> Discovery-Fragen, Einwandvorwegnahme, Nutzenargumentation & Abschluss-Führung.</li>
+          <li><strong>Demo-Kompetenz:</strong> Technische Produkte verständlich in Kundennutzen übersetzen; Live-Demos strukturiert durchführen.</li>
+          <li><strong>Prozessstärke:</strong> Terminierung, Nachverfolgung, CRM-Hygiene, Forecast – zuverlässig & messbar.</li>
+          <li><strong>Service-Haltung:</strong> Support-Erfahrung (remote/on-site) → professionelles Auftreten beim Kunden zu Hause & im Unternehmen.</li>
+          <li><strong>Sprachen & Kultur:</strong> Deutsch/Englisch fließend, souverän mit vielfältigen Kundengruppen.</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h3>Kernkompetenzen</h3>
+        <div class="skill">
+          <div class="label"><span>Kundenansprache & Bedarfsermittlung</span><span>Experte</span></div>
+          <div class="bar"><i style="--w:92%"></i></div>
+        </div>
+        <div class="skill">
+          <div class="label"><span>Produkt-Demo & Storytelling</span><span>Fortgeschritten</span></div>
+          <div class="bar"><i style="--w:88%"></i></div>
+        </div>
+        <div class="skill">
+          <div class="label"><span>Angebot, Preisargumentation & Abschluss</span><span>Fortgeschritten</span></div>
+          <div class="bar"><i style="--w:85%"></i></div>
+        </div>
+        <div class="skill">
+          <div class="label"><span>CRM-Workflows & Nachverfolgung</span><span>Fortgeschritten</span></div>
+          <div class="bar"><i style="--w:90%"></i></div>
+        </div>
+        <div class="skill">
+          <div class="label"><span>Cross-kulturelle Kommunikation (DE/EN)</span><span>Experte</span></div>
+          <div class="bar"><i style="--w:93%"></i></div>
+        </div>
+        <p class="muted" style="color:#a9bde6; margin-top:10px">
+          Tooling (aus B2B übertragbar): SFDC/HubSpot, Microsoft 365; Präsentations- und Einwandbehandlungsmaterialien. 
+          (Quelle: eigenes Profil/CV)
+        </p>
+      </section>
+
+      <section class="card" style="grid-column: 1 / -1">
+        <h3>Berufserfahrung</h3>
+        <div class="timeline">
+          <div class="tl">
+            <div class="role">Engineering Sales – OMB Vertriebsmanagement GmbH | OMB Japan K.K.</div>
+            <div class="meta">Apr 2023 – heute · Köln/DE · EU-Marktfokus</div>
+            <ul class="list">
+              <li>B2B-Pipeline aufgebaut & geführt (Discovery → Demo → Angebot); Anforderungen präzisiert, ROI sauber gerahmt. :contentReference[oaicite:1]{index=1}</li>
+              <li>Technik-Validierungen koordiniert; Sales-Collateral & CRM-Workflows erstellt (Forecast-Genauigkeit gesteigert). :contentReference[oaicite:2]{index=2}</li>
+              <li>Auf Messen/Kundenterminen komplexe Spezifikationen übersetzt; kundennahe Nutzenargumentation in EN/DE. :contentReference[oaicite:3]{index=3}</li>
+            </ul>
+          </div>
+          <div class="tl">
+            <div class="role">Technical Support (Werkstudent) – Covetrus</div>
+            <div class="meta">Jun 2022 – Mär 2023 · Düsseldorf/DE</div>
+            <ul class="list">
+              <li>Remote/On-Site-Support für Diagnosegeräte & Software; hohe Kundenzufriedenheit & System-Uptime. :contentReference[oaicite:4]{index=4}</li>
+            </ul>
+          </div>
+          <div class="tl">
+            <div class="role">Quality Control Intern – SprintRay Inc.</div>
+            <div class="meta">Okt 2021 – Mär 2022 · Weiterstadt/DE</div>
+            <ul class="list">
+              <li>Prozess- & Maßprüfungen für präzise 3D-Druck-Dentalprodukte; Beiträge zur Prozessverbesserung. :contentReference[oaicite:5]{index=5}</li>
+            </ul>
+          </div>
+          <div class="tl">
+            <div class="role">Student Assistant – Fraunhofer IPA</div>
+            <div class="meta">Apr 2020 – Okt 2020 · Bayreuth/DE</div>
+            <ul class="list">
+              <li>Maschinelles Sehen zur Defekterkennung an komplexen 3D-gedruckten Bauteilen; Validierung via Messtechnik. :contentReference[oaicite:6]{index=6}</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h3>Ausbildung</h3>
+        <ul class="list">
+          <li><strong>Hochschule Bochum</strong> – M.Sc. Maschinenbau. :contentReference[oaicite:7]{index=7}</li>
+          <li><strong>Babu Banarsi Das University</strong> – B.Tech. Mechanical Engineering. :contentReference[oaicite:8]{index=8}</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h3>Sprachen</h3>
+        <ul class="list">
+          <li>Deutsch – Fließend/beruflich sicher</li>
+          <li>Englisch – Fließend/beruflich sicher</li>
+          <li>Hindi – Muttersprache</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h3>Zusätzliche Infos</h3>
+        <ul class="list">
+          <li>Reisebereitschaft: deutschlandweit/EU</li>
+          <li>Führerschein B: in Bearbeitung</li>
+          <li>Eintritt: nach Absprache (kurzfristig möglich)</li>
+          <li>Referenzen/Arbeitsproben auf Anfrage</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h3>Kontakt</h3>
+        <p>
+          Telefon: <a href="tel:+4915255825941">+49 152 55825941</a><br>
+          E-Mail: <a href="mailto:amarvishal01@gmail.com">amarvishal01@gmail.com</a><br>
+          Website: <a href="https://amarvishal01.github.io/vertrieb/" target="_blank" rel="noreferrer">amarvishal01.github.io/vertrieb</a>
+        </p>
+      </section>
+    </div>
+
+    <div class="strip" role="note" aria-label="Hinweis">
+      <div class="dot"></div>
+      <div>
+        Dieses Profil wurde aus dem bestehenden CV verdichtet & für Vorwerk Kobold (Direktvertrieb) neu gerahmt, ohne Inhalte zu erfinden. 
+        Details stammen aus deinem vorhandenen Lebenslauf. :contentReference[oaicite:9]{index=9}
+      </div>
+    </div>
+  </div>
+
+<script>
+/* Mild entrance animation for cards */
+document.querySelectorAll('.card').forEach((c,i)=>{
+  c.style.opacity=0; c.style.transform='translateY(10px)';
+  setTimeout(()=>{ c.style.transition='600ms ease'; c.style.opacity=1; c.style.transform='none'; }, 120 + i*80);
+});
+</script>
+</body>
+</html>
